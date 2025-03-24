@@ -1,0 +1,19 @@
+name: slack-backup-manual
+
+on:
+  workflow_dispatch:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: manual_backup
+        uses: nishio/gsheet-slack-logger@main
+        with:
+          timezone: 'Asia/Tokyo'
+          slackToken: ${{ secrets.SLACK_TOKEN }}
+          googleClientEmail: slacklogexporter@shotokutaishi.iam.gserviceaccount.com
+          googlePrivateKey: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          folderId: 1nRUsVD_g__jaUZzWIzZ_wvhNNr3xRqMl
+          year: 2025
+          month: 3
