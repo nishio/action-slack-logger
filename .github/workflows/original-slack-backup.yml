@@ -1,0 +1,18 @@
+name: slack-backup
+
+on:
+  schedule:
+    - cron:  '11 0 1 * *' # 毎月1日 日本時間9時11分に実行。 0:00 は混み合いがちなので適当にばらす
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kuboon/gsheet-slack-logger@main
+        with:
+          timezone: 'Asia/Tokyo'
+          slackToken: ${{ secrets.SLACK_TOKEN }}
+          googleClientEmail: slacklogexporter@shotokutaishi.iam.gserviceaccount.com # 作成したサービスアカウントの email
+          googlePrivateKey: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          folderId: 1nRUsVD_g__jaUZzWIzZ_wvhNNr3xRqMl
+          
